@@ -1,0 +1,5 @@
+GO_PIPELINE_URL = "10.112.124.42"
+GO_PIPELINE_PORT = 8153
+
+PIPELINE_SCHEDULE_TEMPLATE = "/go/api/pipelines/{0}/schedule"
+PIPELINE_CONFIGURATION_URL = "/go/api/admin/config.xml"
