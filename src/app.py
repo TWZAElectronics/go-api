@@ -10,46 +10,46 @@ class PipelineApp():
 
     def process_command(self, command):
 
-        if command == "CMD_READY":
+        if command.startswith("CMD_READY"):
             print("key pressed")
             self.board.write("ACK")
             output = self.controller.current()
             print(output)
             self.reply(output)
 
-        elif command == "CMD_MODE":
+        elif command.startswith("CMD_MODE"):
             print("switch between PIPELINE and STAGE modes")
             self.board.write("ACK")
             output = self.controller.switch_mode()
             print(output)
             self.reply(output)
 
-        elif command == "CMD_DEPLOY":
+        elif command.startswith("CMD_DEPLOY"):
             print("redeploy a selected STAGE or PIPELINE")
             self.board.write("ACK")
             output = self.controller.deploy()
             print(output)
             self.reply(output)
 
-        elif command == "CMD_DEPLOY_TO":
+        elif command.startswith("CMD_DEPLOY_TO"):
             print("deploy to the NEXT STAGE in a pipeline")
             self.board.write("ACK")
 
-        elif command == "CMD_BACK":
+        elif command.startswith("CMD_BACK"):
             print("scroll back through a stage or pipeline depending on current mode")
             self.board.write("ACK")
             output = self.controller.previous()
             print(output)
             self.reply(output)
 
-        elif command == "CMD_FORWARD":
+        elif command.startswith("CMD_FORWARD"):
             print("scroll forward through a stage or pipeline depending on current mode")
             self.board.write("ACK")
             output = self.controller.next()
             print(output)
             self.reply(output)
 
-        elif command == "exit":
+        elif command.startswith("CMD_EXIT"):
             print("Exiting application")
             self.board.write("ACK")
             return False
