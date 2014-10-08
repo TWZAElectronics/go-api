@@ -62,10 +62,6 @@ class PipelineController():
                 self.pipelines[pipeline_name] = Pipeline(pipeline_name, stages)
 
 
-
-
-
-
 class PipelineMode():
     PIPELINE_MODE = "PIPELINE"
     STAGE_MODE = "STAGE"

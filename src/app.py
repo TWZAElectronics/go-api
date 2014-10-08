@@ -14,19 +14,19 @@ class PipelineApp():
             print("key pressed")
             output = self.controller.current()
             print(output)
-            self.board.write(output)
+            self.reply(output)
 
         elif command == "CMD_MODE":
             print("switch between PIPELINE and STAGE modes")
             output = self.controller.switch_mode()
             print(output)
-            self.board.write(output)
+            self.reply(output)
 
         elif command == "CMD_DEPLOY":
             print("redeploy a selected STAGE or PIPELINE")
             output = self.controller.deploy()
             print(output)
-            self.board.write(output)
+            self.reply(output)
 
         elif command == "CMD_DEPLOY_TO":
             print("deploy to the NEXT STAGE in a pipeline")
@@ -35,13 +35,13 @@ class PipelineApp():
             print("scroll back through a stage or pipeline depending on current mode")
             output = self.controller.previous()
             print(output)
-            self.board.write(output)
+            self.reply(output)
 
         elif command == "CMD_FORWARD":
             print("scroll forward through a stage or pipeline depending on current mode")
             output = self.controller.next()
             print(output)
-            self.board.write(output)
+            self.reply(output)
 
         elif command == "exit":
             print("Exiting application")
@@ -53,6 +53,10 @@ class PipelineApp():
 
     def read_board(self):
         return self.board.read()
+
+    def reply(self, message):
+        self.board.write("ACK")
+        self.board.write(message)
 
 
 if __name__ == "__main__":
