@@ -1,3 +1,4 @@
+import time
 from src.board_controller import BoardController
 from src.pipeline_controller import PipelineController
 
@@ -9,11 +10,7 @@ class PipelineApp():
         self.board = BoardController()
 
     def process_command(self, command):
-
-        self.board.write("ACK")
-
         if command.startswith("CMD_READY"):
-            print("key pressed")
             output = self.controller.current()
             print(output)
             self.reply(output)
@@ -57,18 +54,14 @@ class PipelineApp():
         return self.board.read()
 
     def reply(self, message):
-        counter = 0
-        while counter < 10 and self.read_board() != "ACK":
-            counter+=1
-            self.board.write("DSP:LN2:SCR0:CMXA:" + message)
-
+        self.board.write("DSP:LN1:SCR1:CMXRBGGGG:" + message)
+        time.sleep(1)
 
 if __name__ == "__main__":
     app = PipelineApp()
     running = True
     while running:
         command = app.read_board()
-        print command
         running = app.process_command(command)
 
 
